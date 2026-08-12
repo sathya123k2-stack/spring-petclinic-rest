@@ -35,7 +35,10 @@ tools {
             steps {
                 sh '''
                 docker rm -f spring-petclinic || true
-                docker run -d --name spring-petclinic -p 9966:9966 sathya123k2/spring-petclinic:v1
+                docker run -d \
+                --name spring-petclinic \
+                -p 9966:9966 \
+                sathya123k2/spring-petclinic:v1
                 '''
             }
         }
