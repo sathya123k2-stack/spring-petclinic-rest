@@ -26,6 +26,12 @@ stage('Build Docker Image') {
         sh 'docker build -t spring-petclinic:v1 .'
     }
 }
+        stage('Tag Docker Image') {
+    steps {
+        sh 'docker tag spring-petclinic:v1 sathya123k2/spring-petclinic:v1'
+    }
+}
+        
         stage('Push Docker Image') {
     steps {
         withCredentials([usernamePassword(
@@ -36,6 +42,7 @@ stage('Build Docker Image') {
             sh '''
             echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
             docker push sathya123k2/spring-petclinic:v1
+            docker logout
             '''
         }
     }
